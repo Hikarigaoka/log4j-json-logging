@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <appender name="AUTO_RESIZE_ASYNC" class="AutoResizeAsyncAppender">
+        <param name="InitialBufferSize" value="100" />
+        <param name="MaxBufferSize" value="100" />
+        <param name="MinBufferSize" value="10" />
+        <param name="ResizeFactor" value="10" />
+        <appender-ref ref="FILE" />
+    </appender>
+
+    <appender name="FILE" class="org.apache.log4j.FileAppender">
+        <param name="File" value="logs/app.log" />
+        <param name="Append" value="true" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %-5p [%t] %c: %m%n" />
+        </layout>
+    </appender>
+
+    <root>
+        <priority value="info" />
+        <appender-ref ref="AUTO_RESIZE_ASYNC" />
+    </root>
+</log4j:configuration>
